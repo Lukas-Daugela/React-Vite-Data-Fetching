@@ -1,0 +1,22 @@
+@import "../../sass/index.scss";
+
+.button {
+  height: 3.4rem;
+  padding: 0 2.4rem;
+  font-size: 1.4rem;
+  color: var(--color-white-100);
+  background-color: var(--color-green-460);
+  border-radius: 48px;
+  border: unset;
+  cursor: pointer;
+  font-weight: var(--font-weight-base);
+
+  @include media-query("lg") {
+    font-size: 1.8rem;
+    height: 4.5rem;
+  }
+
+  &:hover {
+    background-color: var(--color-green-560);
+  }
+}
