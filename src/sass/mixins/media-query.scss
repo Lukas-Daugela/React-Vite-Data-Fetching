@@ -1,0 +1,11 @@
+$breakpoints: (
+  sm: 320px,
+  md: 768px,
+  lg: 1200px,
+);
+
+@mixin media-query($key) {
+  @media (min-width: map-get($breakpoints, $key)) {
+    @content;
+  }
+}
