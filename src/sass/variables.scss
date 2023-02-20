@@ -1,9 +1,9 @@
 :root {
   /* Colors */
+  --color-green-190: #1c4327;
   --color-green-460: #4ba153;
   --color-green-470: #658b6894;
   --color-green-790: #caff96;
-  --color-green-190: #1c4327;
 
   --color-light-green-to-dark-green: linear-gradient(
     124.24deg,
@@ -11,4 +11,9 @@
     #00491d 67.19%,
     #000000 100%
   );
+
+  /* Base */
+  --font-family-primary: "Montserrat";
+  --font-weight-base: 700;
+  --color-base: var(--color-green-190);
 }
