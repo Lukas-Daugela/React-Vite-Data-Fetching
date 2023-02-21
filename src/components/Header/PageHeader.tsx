@@ -1,10 +1,10 @@
 import "./PageHeader.scss";
 
-type PageHeader = {
+type PageHeaderProps = {
   title: string;
 };
 
-const PageHeader = ({ title }: PageHeader) => {
+const PageHeader = ({ title }: PageHeaderProps) => {
   return (
     <header className="page-header">
       <h1 className="page-header__title">{title}</h1>
