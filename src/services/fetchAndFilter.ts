@@ -3,4 +3,6 @@ const getCountriesData = () => {
   return fetch(url).then((res) => res.json());
 };
 
-export default getCountriesData;
+const reverseData = (data: any[]) => data.reverse();
+
+export { getCountriesData, reverseData };

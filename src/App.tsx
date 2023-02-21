@@ -5,19 +5,40 @@ import SectionCountries from "./components/SectionCountries/SectionCountries";
 import PageHeader from "./components/Header/PageHeader";
 import Button from "./components/Button/Button";
 import upAndDownArrow from "/assets/upAndDownArrows.svg";
-import getCountriesData from "./services/fetchData";
+import { getCountriesData, reverseData } from "./services/fetchAndFilter";
 
 function App() {
-  const [fetchedData, setFetchedData] = useState();
+  const [fetchedCities, setFetchedCities] = useState<any[]>();
+  const [currentCities, setCurrentCities] = useState<any[]>();
+  const [descendingOrder, setDescendingOrder] = useState<boolean>();
 
   const getCountries = async () => {
-    const data = await getCountriesData();
-    setFetchedData(data);
+    await getCountriesData().then((data) => {
+      setCurrentCities(data);
+      setFetchedCities(data);
+    });
+  };
+
+  const handleReverse = () => {
+    if (fetchedCities !== undefined) {
+      const reversedData = reverseData([...fetchedCities]);
+      setCurrentCities(reversedData);
+    }
   };
 
   useEffect(() => {
     getCountries();
+    console.log("making call");
   }, []);
+
+  useEffect(() => {
+    if (descendingOrder) {
+      handleReverse();
+    } else {
+      setDescendingOrder(false);
+      setCurrentCities(fetchedCities);
+    }
+  }, [descendingOrder]);
 
   return (
     <>
@@ -25,14 +46,23 @@ function App() {
       <main className="main">
         <div className="main__buttons-container">
           <div className="buttons-container__filter-buttons">
-            <Button text="area < Lithuania" />
-            <Button text="Oceania region" />
+            <Button
+              type={"filter"}
+              setState={() => {}}
+              text="area < Lithuania"
+            />
+            <Button type={"filter"} setState={() => {}} text="Oceania region" />
           </div>
-          <Button text="A - Z">
+          <Button
+            type={"sort"}
+            currentState={descendingOrder}
+            setState={setDescendingOrder}
+            text="A - Z"
+          >
             <img src={upAndDownArrow} alt="" />
           </Button>
         </div>
-        {fetchedData && <SectionCountries formatedData={fetchedData} />}
+        {currentCities && <SectionCountries formatedData={currentCities} />}
       </main>
     </>
   );
