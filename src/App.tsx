@@ -1,31 +1,23 @@
+import { useEffect, useState } from "react";
+
 import "./App.scss";
 import SectionCountries from "./components/SectionCountries/SectionCountries";
 import PageHeader from "./components/Header/PageHeader";
 import Button from "./components/Button/Button";
 import upAndDownArrow from "/assets/upAndDownArrows.svg";
+import getCountriesData from "./services/fetchData";
 
 function App() {
-  const testArray: {
-    country: string;
-    region: string;
-    areaSize: number;
-  }[] = [
-    {
-      country: "Lithuania",
-      region: "Europe",
-      areaSize: 325151516,
-    },
-    {
-      country: "Latvia",
-      region: "Europe",
-      areaSize: 187891516,
-    },
-    {
-      country: "New York",
-      region: "United States",
-      areaSize: 98989962135,
-    },
-  ];
+  const [fetchedData, setFetchedData] = useState();
+
+  const getCountries = async () => {
+    const data = await getCountriesData();
+    setFetchedData(data);
+  };
+
+  useEffect(() => {
+    getCountries();
+  }, []);
 
   return (
     <>
@@ -40,7 +32,7 @@ function App() {
             <img src={upAndDownArrow} alt="" />
           </Button>
         </div>
-        <SectionCountries formatedData={testArray} />
+        {fetchedData && <SectionCountries formatedData={fetchedData} />}
       </main>
     </>
   );
