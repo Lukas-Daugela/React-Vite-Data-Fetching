@@ -1,0 +1,26 @@
+@import "../../sass/index.scss";
+
+.page-header {
+  text-align: center;
+  padding: 4.2rem 0 3rem;
+
+  @include media-query("sm") {
+    padding: 4.2rem 0 1.5rem 2.8rem;
+    text-align: start;
+  }
+  @include media-query("md") {
+    padding: 6rem 0 1.5rem 6rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin: 0;
+
+    @include media-query("md") {
+      font-size: 2.6rem;
+    }
+    @include media-query("lg") {
+      font-size: 3.2rem;
+    }
+  }
+}
