@@ -3,9 +3,9 @@ import "./SectionCountries.scss";
 
 type SectionCountriesProps = {
   formatedData: {
-    country: string;
+    name: string;
     region: string;
-    areaSize: number;
+    area?: number;
   }[];
 };
 
@@ -15,9 +15,9 @@ const SectionCountries = ({ formatedData }: SectionCountriesProps) => {
       {formatedData.map((data) => {
         return (
           <Country
-            key={data.country}
-            areaSize={data.areaSize}
-            country={data.country}
+            key={data.name}
+            areaSize={data.area}
+            country={data.name}
             region={data.region}
           />
         );

@@ -3,7 +3,7 @@ import "./Country.scss";
 type CountryProps = {
   country: string;
   region: string;
-  areaSize: number;
+  areaSize?: number;
 };
 
 const Country = ({ country, region, areaSize }: CountryProps) => {
@@ -11,7 +11,7 @@ const Country = ({ country, region, areaSize }: CountryProps) => {
     <ul className="country">
       <li className="country__prop">Country: {country}</li>
       <li className="country__prop">Region: {region}</li>
-      <li className="country__prop">Area size: {areaSize} m²</li>
+      {areaSize && <li className="country__prop">Area size: {areaSize}</li>}
     </ul>
   );
 };
