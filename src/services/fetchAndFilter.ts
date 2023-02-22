@@ -33,4 +33,19 @@ const filterCountriesLessThan = (
   return filteredCountries;
 };
 
-export { getCountriesData, reverseData, findArea, filterCountriesLessThan };
+const filterCountriesRegion = (arrayOfCountries: any[], regionName: string) => {
+  const filteredCountries = arrayOfCountries.filter(
+    (country: filterProps): object | undefined => {
+      if (country.region === regionName) return country;
+    }
+  );
+  return filteredCountries;
+};
+
+export {
+  getCountriesData,
+  reverseData,
+  findArea,
+  filterCountriesLessThan,
+  filterCountriesRegion,
+};

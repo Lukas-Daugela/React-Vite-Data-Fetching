@@ -10,6 +10,7 @@ import {
   reverseData,
   findArea,
   filterCountriesLessThan,
+  filterCountriesRegion,
 } from "./services/fetchAndFilter";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [currentCities, setCurrentCities] = useState<any[]>([]);
   const [descendingOrder, setDescendingOrder] = useState<boolean>();
   const [isAreaFilter, setIsAreaFilter] = useState<boolean>(false);
+  const [isRegionFilter, setIsRegionFilter] = useState<boolean>(false);
 
   const getCountries = async () => {
     await getCountriesData().then((data) => {
@@ -44,13 +46,23 @@ function App() {
 
   const handleLessThanLithuania = async () => {
     if (!isAreaFilter) {
-      const areaSize = await findArea(currentCities, "Lithuania");
+      const areaSize = await findArea(fetchedCities, "Lithuania");
       const filteredCountries = filterCountriesLessThan(
-        currentCities,
+        fetchedCities,
         areaSize
       );
       setCurrentCities(filteredCountries);
       setIsAreaFilter(true);
+      setIsRegionFilter(false);
+    } else return;
+  };
+
+  const handleFilterRegion = async () => {
+    if (!isRegionFilter) {
+      const filteredCountries = filterCountriesRegion(fetchedCities, "Oceania");
+      setCurrentCities(filteredCountries);
+      setIsRegionFilter(true);
+      setIsAreaFilter(false);
     } else return;
   };
 
@@ -65,7 +77,11 @@ function App() {
               func={handleLessThanLithuania}
               text="area < Lithuania"
             />
-            <Button type={"filter"} func={() => {}} text="Oceania region" />
+            <Button
+              type={"filter"}
+              func={handleFilterRegion}
+              text="Oceania region"
+            />
           </div>
           <Button
             type={"sort"}
