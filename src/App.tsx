@@ -14,16 +14,16 @@ import {
 } from "./services/fetchAndFilter";
 
 function App() {
-  const [fetchedCities, setFetchedCities] = useState<any[]>([]);
-  const [currentCities, setCurrentCities] = useState<any[]>([]);
+  const [fetchedCountries, setFetchedCountries] = useState<any[]>([]);
+  const [currentCountries, setCurrentCountries] = useState<any[]>([]);
   const [descendingOrder, setDescendingOrder] = useState<boolean>();
   const [isAreaFilter, setIsAreaFilter] = useState<boolean>(false);
   const [isRegionFilter, setIsRegionFilter] = useState<boolean>(false);
 
   const getCountries = async () => {
     await getCountriesData().then((data) => {
-      setCurrentCities(data);
-      setFetchedCities(data);
+      setCurrentCountries(data);
+      setFetchedCountries(data);
     });
   };
 
@@ -33,25 +33,25 @@ function App() {
 
   useEffect(() => {
     if (descendingOrder) {
-      handleReverse(currentCities);
+      handleReverse(currentCountries);
     } else if (!descendingOrder) {
-      handleReverse(currentCities);
+      handleReverse(currentCountries);
     }
   }, [descendingOrder]);
 
   const handleReverse = (dataToReverse: any[]) => {
     const reversedData = reverseData([...dataToReverse]);
-    setCurrentCities(reversedData);
+    setCurrentCountries(reversedData);
   };
 
-  const handleLessThanLithuania = async () => {
+  const handleLessThanArea = async () => {
     if (!isAreaFilter) {
-      const areaSize = await findArea(fetchedCities, "Lithuania");
+      const areaSize = await findArea(fetchedCountries, "Lithuania");
       const filteredCountries = filterCountriesLessThan(
-        fetchedCities,
+        fetchedCountries,
         areaSize
       );
-      setCurrentCities(filteredCountries);
+      setCurrentCountries(filteredCountries);
       setIsAreaFilter(true);
       setIsRegionFilter(false);
     } else return;
@@ -59,11 +59,20 @@ function App() {
 
   const handleFilterRegion = async () => {
     if (!isRegionFilter) {
-      const filteredCountries = filterCountriesRegion(fetchedCities, "Oceania");
-      setCurrentCities(filteredCountries);
+      const filteredCountries = filterCountriesRegion(
+        fetchedCountries,
+        "Oceania"
+      );
+      setCurrentCountries(filteredCountries);
       setIsRegionFilter(true);
       setIsAreaFilter(false);
     } else return;
+  };
+
+  const handleAllCuntries = async () => {
+    setCurrentCountries(fetchedCountries);
+    setIsRegionFilter(false);
+    setIsAreaFilter(false);
   };
 
   return (
@@ -74,8 +83,13 @@ function App() {
           <div className="buttons-container__filter-buttons">
             <Button
               type={"filter"}
-              func={handleLessThanLithuania}
-              text="area < Lithuania"
+              func={handleAllCuntries}
+              text="All countries"
+            />
+            <Button
+              type={"filter"}
+              func={handleLessThanArea}
+              text="Area < Lithuania"
             />
             <Button
               type={"filter"}
@@ -92,7 +106,9 @@ function App() {
             <img src={upAndDownArrow} alt="" />
           </Button>
         </div>
-        {currentCities && <SectionCountries formatedData={currentCities} />}
+        {currentCountries && (
+          <SectionCountries formatedData={currentCountries} />
+        )}
       </main>
     </>
   );
