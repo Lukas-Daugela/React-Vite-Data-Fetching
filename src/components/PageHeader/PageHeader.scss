@@ -2,6 +2,7 @@
 
 .page-header {
   text-align: center;
+  color: var(--color-green-190);
   padding: 4.2rem 0 3rem;
 
   @include media-query("sm") {
