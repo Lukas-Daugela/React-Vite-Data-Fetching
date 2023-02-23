@@ -1,4 +1,4 @@
-import PageHeader from "./components/Header/PageHeader";
+import PageHeader from "./components/PageHeader/PageHeader";
 import SectionMain from "./components/SectionMain/SectionMain";
 
 function App() {
