@@ -24,6 +24,7 @@ function App() {
   const countriesPerPage: number = 5;
 
   const amountOfPages = Math.ceil(currentCountries.length / countriesPerPage);
+  const isLastPage = currentPage === amountOfPages;
 
   const fetchData = async () => {
     await fetchApiData().then((data) => {
@@ -123,7 +124,10 @@ function App() {
           </Button>
         </div>
         {currentCountries && (
-          <SectionCountries formatedData={displayedCountries} />
+          <SectionCountries
+            isLastPage={isLastPage}
+            formatedData={displayedCountries}
+          />
         )}
       </main>
       <PagePagination
