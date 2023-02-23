@@ -1,4 +1,4 @@
-const getCountriesData = () => {
+const fetchApiData = () => {
   const url = "https://restcountries.com/v2/all?fields=name,region,area";
   return fetch(url).then((res) => res.json());
 };
@@ -43,7 +43,7 @@ const filterCountriesRegion = (arrayOfCountries: any[], regionName: string) => {
 };
 
 export {
-  getCountriesData,
+  fetchApiData,
   reverseData,
   findArea,
   filterCountriesLessThan,

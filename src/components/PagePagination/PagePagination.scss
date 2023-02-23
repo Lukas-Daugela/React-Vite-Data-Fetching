@@ -1,0 +1,12 @@
+@import "../../sass/index.scss";
+
+.page-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 0 2rem;
+
+  @include media-query("sm") {
+    gap: 2.5rem;
+  }
+}
