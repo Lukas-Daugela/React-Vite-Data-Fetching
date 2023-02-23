@@ -6,12 +6,13 @@ import PageHeader from "./components/Header/PageHeader";
 import Button from "./components/Button/Button";
 import upAndDownArrow from "/assets/upAndDownArrows.svg";
 import {
-  getCountriesData,
+  fetchApiData,
   reverseData,
   findArea,
   filterCountriesLessThan,
   filterCountriesRegion,
 } from "./services/fetchAndFilter";
+import PagePagination from "./components/PagePagination/PagePagination";
 
 function App() {
   const [fetchedCountries, setFetchedCountries] = useState<any[]>([]);
@@ -19,16 +20,20 @@ function App() {
   const [descendingOrder, setDescendingOrder] = useState<boolean>();
   const [isAreaFilter, setIsAreaFilter] = useState<boolean>(false);
   const [isRegionFilter, setIsRegionFilter] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const countriesPerPage: number = 5;
 
-  const getCountries = async () => {
-    await getCountriesData().then((data) => {
+  const amountOfPages = Math.ceil(currentCountries.length / countriesPerPage);
+
+  const fetchData = async () => {
+    await fetchApiData().then((data) => {
       setCurrentCountries(data);
       setFetchedCountries(data);
     });
   };
 
   useEffect(() => {
-    getCountries();
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -54,6 +59,7 @@ function App() {
       setCurrentCountries(filteredCountries);
       setIsAreaFilter(true);
       setIsRegionFilter(false);
+      setCurrentPage(1);
     } else return;
   };
 
@@ -66,6 +72,7 @@ function App() {
       setCurrentCountries(filteredCountries);
       setIsRegionFilter(true);
       setIsAreaFilter(false);
+      setCurrentPage(1);
     } else return;
   };
 
@@ -73,7 +80,16 @@ function App() {
     setCurrentCountries(fetchedCountries);
     setIsRegionFilter(false);
     setIsAreaFilter(false);
+    setCurrentPage(1);
   };
+
+  // Slicing current data to display required amount of elements in on page
+  const indexOfLastCountry = currentPage * countriesPerPage;
+  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+  const displayedCountries = currentCountries.slice(
+    indexOfFirstCountry,
+    indexOfLastCountry
+  );
 
   return (
     <>
@@ -107,9 +123,14 @@ function App() {
           </Button>
         </div>
         {currentCountries && (
-          <SectionCountries formatedData={currentCountries} />
+          <SectionCountries formatedData={displayedCountries} />
         )}
       </main>
+      <PagePagination
+        amountOfPages={amountOfPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }
