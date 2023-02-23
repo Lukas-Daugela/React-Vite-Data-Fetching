@@ -1,0 +1,32 @@
+@import "../../sass/index.scss";
+
+.main {
+  padding-bottom: 3rem;
+  display: grid;
+  gap: 1.5rem;
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    @include media-query("xsm") {
+      align-items: end;
+      flex-direction: row;
+    }
+  }
+}
+
+.buttons-container__filter-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  @include media-query("sm") {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

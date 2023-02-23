@@ -1,10 +1,13 @@
-import "./App.scss";
+import PageHeader from "./components/PageHeader/PageHeader";
+import SectionMain from "./components/SectionMain/SectionMain";
+import PageLayout from "./layouts/PageLayout";
 
 function App() {
   return (
-    <div className="app">
-      <h1 className="app__title">Reiz Tech Assignment</h1>
-    </div>
+    <PageLayout>
+      <PageHeader title="Reiz Tech Assignment" />
+      <SectionMain />
+    </PageLayout>
   );
 }
 

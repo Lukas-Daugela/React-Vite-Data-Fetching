@@ -1,0 +1,11 @@
+@import "../../sass/index.scss";
+
+.countries {
+  display: grid;
+  gap: 1.5rem;
+  min-height: 72rem;
+
+  &--on-last-page {
+    min-height: unset;
+  }
+}

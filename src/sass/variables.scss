@@ -1,0 +1,22 @@
+:root {
+  /* Colors */
+  --color-green-190: #1c4327;
+  --color-green-460: #4ba153;
+  --color-green-470: #658b6894;
+  --color-green-560: #67b86e;
+  --color-green-790: #caff96;
+
+  --color-white-100: #ffffff;
+
+  --color-light-green-to-dark-green: linear-gradient(
+    124.24deg,
+    #caff96 11.46%,
+    #00491d 67.19%,
+    #000000 100%
+  );
+
+  /* Base */
+  --font-family-primary: "Montserrat";
+  --font-weight-base: 700;
+  --color-body-background: var(--color-light-green-to-dark-green);
+}
