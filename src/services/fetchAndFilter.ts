@@ -5,7 +5,7 @@ const fetchApiData = () => {
 
 const reverseData = (data: any[]) => data.reverse();
 
-type filterProps = {
+type countryDataProps = {
   name: string;
   region: string;
   area: number;
@@ -14,7 +14,7 @@ type filterProps = {
 
 const findArea = (arrayOfCountries: any[], countryName: string) => {
   const correctCountry = arrayOfCountries.find(
-    (country: filterProps): object | undefined => {
+    (country: countryDataProps): object | undefined => {
       if (country.name === countryName) return country;
     }
   );
@@ -26,7 +26,7 @@ const filterCountriesLessThan = (
   lessThanArea: number
 ) => {
   const filteredCountries = arrayOfCountries.filter(
-    (country: filterProps): object | undefined => {
+    (country: countryDataProps): object | undefined => {
       if (country.area < lessThanArea) return country;
     }
   );
@@ -35,7 +35,7 @@ const filterCountriesLessThan = (
 
 const filterCountriesRegion = (arrayOfCountries: any[], regionName: string) => {
   const filteredCountries = arrayOfCountries.filter(
-    (country: filterProps): object | undefined => {
+    (country: countryDataProps): object | undefined => {
       if (country.region === regionName) return country;
     }
   );

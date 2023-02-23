@@ -36,6 +36,7 @@ function SectionMain() {
     fetchData();
   }, []);
 
+  // Sorting data alphabetically (in this case by name)
   useEffect(() => {
     if (descendingOrder) {
       handleReverse(currentCountries);
@@ -49,6 +50,7 @@ function SectionMain() {
     setCurrentCountries(reversedData);
   };
 
+  // Filter buttons handlers
   const handleLessThanArea = async () => {
     if (!isAreaFilter) {
       const areaSize = await findArea(fetchedCountries, "Lithuania");
@@ -76,14 +78,14 @@ function SectionMain() {
     } else return;
   };
 
-  const handleAllCuntries = () => {
+  const handleAllCountries = () => {
     setCurrentCountries(fetchedCountries);
     setIsRegionFilter(false);
     setIsAreaFilter(false);
     setCurrentPage(1);
   };
 
-  // Slicing current data to display required amount of elements in on page
+  // Slicing current data to display required amount of elements in current page
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
   const displayedCountries = currentCountries.slice(
@@ -96,26 +98,14 @@ function SectionMain() {
       <main className="main">
         <div className="main__buttons-container">
           <div className="buttons-container__filter-buttons">
-            <Button
-              type={"filter"}
-              func={handleAllCuntries}
-              text="All countries"
-            />
-            <Button
-              type={"filter"}
-              func={handleLessThanArea}
-              text="Area < Lithuania"
-            />
-            <Button
-              type={"filter"}
-              func={handleFilterRegion}
-              text="Oceania region"
-            />
+            <Button onClick={handleAllCountries} text="All countries" />
+            <Button onClick={handleLessThanArea} text="Area < Lithuania" />
+            <Button onClick={handleFilterRegion} text="Oceania region" />
           </div>
           <Button
             type={"sort"}
             currentState={descendingOrder}
-            func={setDescendingOrder}
+            onClick={setDescendingOrder}
             text="A - Z"
           >
             <img src={upAndDownArrow} alt="" />

@@ -29,8 +29,8 @@ const SectionCountries = ({
         return (
           <Country
             key={data.name}
-            areaSize={data.area}
-            country={data.name}
+            area={data.area}
+            name={data.name}
             region={data.region}
           />
         );

@@ -12,6 +12,7 @@ const PagePagination = ({
   setCurrentPage,
   amountOfPages,
 }: PagePaginationProps) => {
+  // To calculate correct amount of page numbers needed to display in the pagination nav bar
   let startPageIndex: number;
   let endPageIndex: number;
 

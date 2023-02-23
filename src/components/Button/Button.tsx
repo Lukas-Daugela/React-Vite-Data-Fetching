@@ -4,19 +4,22 @@ import "./Button.scss";
 type ButtonProps = {
   text: string;
   children?: ReactNode;
-  func: Function;
+  onClick: Function;
   currentState?: boolean;
-  type?: "sort" | "filter";
+  type?: "sort";
 };
 
-const Button = ({ text, children, currentState, func, type }: ButtonProps) => {
+const Button = ({
+  text,
+  children,
+  currentState,
+  onClick,
+  type,
+}: ButtonProps) => {
   const handleClick = () => {
     if (type === "sort") {
-      return func(!currentState);
-    }
-    if (type === "filter") {
-      return func();
-    }
+      return onClick(!currentState);
+    } else return onClick();
   };
 
   return (
