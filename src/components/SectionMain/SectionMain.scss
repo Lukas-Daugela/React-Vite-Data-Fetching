@@ -15,11 +15,11 @@
     flex-direction: column;
     align-items: start;
     gap: 1rem;
+    flex-wrap: wrap;
 
     @include media-query("xsm") {
       align-items: end;
       flex-direction: row;
-      gap: unset;
     }
   }
 }
@@ -30,6 +30,7 @@
   flex-direction: column;
 
   @include media-query("sm") {
+    flex-wrap: wrap;
     flex-direction: row;
   }
 }
