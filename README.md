@@ -1,4 +1,5 @@
 # Reiz Tech Assignment
+Design was created acording to given wireframe.
 Project is made using:
 - "React" library
 - "Vite" build tool
