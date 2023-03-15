@@ -1,5 +1,7 @@
-# Reiz Tech Assignment
-Design was created acording to given wireframe.
+# Data Fetching
+One more project with data fetching from API. Also implemented pagination and sorting functions.    
+Tried to code the whole project using Typescript. I know that it's not perfect, but I have learned a lot about it.
+
 Project is made using:
 - "React" library
 - "Vite" build tool
