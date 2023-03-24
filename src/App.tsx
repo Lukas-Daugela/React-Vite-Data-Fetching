@@ -5,7 +5,7 @@ import PageLayout from "./layouts/PageLayout";
 function App() {
   return (
     <PageLayout>
-      <PageHeader title="Reiz Tech Assignment" />
+      <PageHeader title="Country data" />
       <SectionMain />
     </PageLayout>
   );
